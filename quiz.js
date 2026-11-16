@@ -2,11 +2,9 @@
 // Le stesse risposte danno sempre lo stesso risultato.
 // Se cambi un risultato, rigenera anche le immagini di anteprima (cartella assets/r).
 window.DOMANDE = [
-  { testo: "Cosa ordini al bar?", risposte: ["Un caffè, al volo", "Un cappuccino, con calma", "Quello che prende chi paga"] },
-  { testo: "Il tuo posto preferito a una festa?", risposte: ["Al centro della pista", "Vicino al buffet", "Sul divano, a osservare tutti"] },
-  { testo: "Ti perdi in una città sconosciuta. Tu…", risposte: ["Chiedo al primo che passa", "Seguo il mio istinto", "Mi siedo e aspetto che mi trovino"] },
-  { testo: "Il tuo difetto più simpatico?", risposte: ["Arrivo sempre in ritardo", "Parlo troppo", "Non so tenere un segreto"] },
-  { testo: "Cosa porteresti su un'isola deserta?", risposte: ["Un buon libro", "Un mazzo di carte", "Un cappello elegante"] }
+  { testo: "Cosa ordini al bar?", risposte: ["Un caffè, al volo", "Un cappuccino, con calma", "Una spremuta: sono salutista", "Quello che prende chi paga", "Niente, sono qui per chiacchierare"] },
+  { testo: "Il tuo posto preferito a una festa?", risposte: ["Al centro della pista", "Vicino al buffet", "Sul divano, a osservare tutti", "In cucina con i padroni di casa", "Vicino alla porta, pronto ad andarmene"] },
+  { testo: "Il tuo difetto più simpatico?", risposte: ["Arrivo sempre in ritardo", "Parlo troppo", "Non so tenere un segreto", "Dico sempre \"ancora cinque minuti\"", "Mi perdo anche col navigatore"] }
 ];
 
 window.RISULTATI = [
@@ -112,11 +110,11 @@ window.RISULTATI = [
   "un primo attore che si inchinava anche agli applausi degli altri"
 ];
 
-// Da risposte (5 numeri da 0 a 2) a risultato (da 1 a 100).
-// Le 243 combinazioni vengono "mescolate" in modo fisso: tutti i 100 risultati sono raggiungibili.
+// Da risposte (3 numeri da 0 a 4) a risultato (da 1 a 100).
+// Le 125 combinazioni vengono "mescolate" in modo fisso: tutti i 100 risultati sono raggiungibili.
 window.calcolaRisultato = risposte => {
-  const indice = risposte.reduce((n, r) => n * 3 + r, 0);   // 0..242
-  return ((indice * 37 + 11) % 243) % 100 + 1;
+  const indice = risposte.reduce((n, r) => n * 5 + r, 0);   // 0..124
+  return ((indice * 37 + 11) % 125) % 100 + 1;
 };
 
 // ---------- Legami tra due vite precedenti ----------
