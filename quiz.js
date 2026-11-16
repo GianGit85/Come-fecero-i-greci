@@ -118,3 +118,73 @@ window.calcolaRisultato = risposte => {
   const indice = risposte.reduce((n, r) => n * 3 + r, 0);   // 0..242
   return ((indice * 37 + 11) % 243) % 100 + 1;
 };
+
+// ---------- Legami tra due vite precedenti ----------
+// Famiglia di ogni risultato (stesso ordine della lista RISULTATI):
+// M militari · S spie · A artisti · F fantasmi e veggenti · K cuochi e osti · N nobili · C gente comune · X leggendari
+window.FAMIGLIE = (
+  "M S A X F F K M S M A C M S M A A C X F" +
+  " X M M S N C M K S N F F C C M A K C S M" +
+  " A A C K S M A A X N M C K M A M F X M N" +
+  " S A S X K N M A F M S C F A K C S C M F" +
+  " C C M A C F M N A C S C A N K M F M A A"
+).split(" ");
+
+const ORDINE_FAMIGLIE = "MSAFKNCX";
+window.LEGAMI = {
+  MM: ["il generale e l'unico soldato che non lo ascoltava mai", "due soldati che si erano persi andando al fronte", "compagni di trincea che si rubavano il rancio"],
+  MS: ["una spia e il generale che le dava la caccia da anni", "un soldato e la spia che gli leggeva le lettere da casa", "due complici che vendevano piani di battaglia sbagliati"],
+  MA: ["il soldato e la cantante degli spettacoli al fronte", "un ufficiale e l'attore che lo imitava in ogni spettacolo", "due commilitoni che mettevano in scena commedie in caserma"],
+  MF: ["un soldato e il fantasma della caserma che lo svegliava di notte", "il generale e la cartomante che decideva le sue battaglie", "due reduci che parlavano con gli spiriti dei vecchi compagni"],
+  MK: ["il generale e il cuoco del reggimento, l'unico che temeva", "un soldato e l'oste che gli faceva credito a fine mese", "due compagni d'armi che disertavano solo per andare a pranzo"],
+  MN: ["il conte e la sua guardia del corpo, che scappava per prima", "un ufficiale innamorato di una contessa che non lo guardava nemmeno", "il re e il generale che vinceva le battaglie solo sulla carta"],
+  MC: ["un soldato e il barbiere che sapeva della guerra prima di lui", "il capitano e il postino che consegnava gli ordini al reggimento sbagliato", "due vicini di casa: uno marciava, l'altro voleva dormire"],
+  MX: ["due soldati chiusi nello stesso cavallo di legno, molto stretto", "il generale e il piccione che portava i suoi ordini all'indirizzo sbagliato", "un soldato e il pirata che gli aveva vinto la paga a carte"],
+  SS: ["due spie che si pedinavano a vicenda senza saperlo", "due agenti segreti che si erano scambiati i travestimenti", "due spie innamorate della stessa informatrice"],
+  SA: ["una spia travestita da attore e l'attore vero che non capiva niente", "la cantante di varietà e la spia che le scriveva i testi in codice", "due artisti di strada che erano in realtà agenti segreti"],
+  SF: ["una spia e il medium che le passava informazioni dall'aldilà", "un detective e il fantasma testimone che nessuno ascoltava", "due agenti segreti che si davano appuntamento in un castello infestato"],
+  SK: ["una spia e il fornaio che nascondeva i messaggi nel pane", "il detective e l'oste che sapeva sempre chi era passato dalla locanda", "due spie che si incontravano sempre nella stessa trattoria"],
+  SN: ["una spia e l'ambasciatore che le raccontava tutto dopo il secondo bicchiere", "il ladro gentiluomo e la contessa che fingeva di non accorgersene", "due agenti segreti infiltrati allo stesso ballo di corte"],
+  SC: ["una spia e il postino che leggeva le sue lettere prima di lei", "il detective e il barbiere che risolveva i casi mentre tagliava", "due vicini di casa che si spiavano dalla finestra"],
+  SX: ["una spia e il piccione che portava i messaggi sbagliati", "due agenti nascosti nella pancia di un cavallo di legno", "il detective e il pirata che gli rubava sempre gli indizi"],
+  AA: ["due attori che si rubavano sempre la scena", "due musicisti della stessa banda, sempre fuori tempo", "il mago e l'assistente che spariva davvero"],
+  AF: ["un attore e il fantasma che infestava il suo teatro", "la cantante e la cartomante che le prevedeva sempre fischi", "il prestigiatore e il medium che si accusavano di imbrogliare"],
+  AK: ["il tenore e l'oste che lo pagava in piatti di pasta", "la ballerina e il fornaio che le portava le paste di nascosto", "due artisti di strada che si esibivano davanti alla stessa trattoria"],
+  AN: ["il buffone di corte e il re che lo prendeva troppo sul serio", "la diva e il conte che le mandava fiori senza firmare", "il cantante di corte e la principessa che si tappava le orecchie"],
+  AC: ["il clown e il barbiere che gli rifaceva il trucco", "il poeta e il postino che consegnava le sue lettere d'amore", "l'attore e il vicino che batteva sul muro durante le prove"],
+  AX: ["il domatore e il cavallo di legno che non riusciva a domare", "il cantastorie e il pirata che gli rubava le storie", "l'acrobata e il piccione che gli faceva concorrenza in piazza"],
+  FF: ["due fantasmi che infestavano la stessa casa e non si sopportavano", "due oracoli che davano risposte opposte", "due fantasmi che dividevano lo stesso lenzuolo"],
+  FK: ["il fantasma dell'osteria e il cuoco che gli lasciava sempre un piatto", "la cartomante e il fornaio che le chiedeva i numeri del lotto", "un medium e il cuoco che chiedeva le ricette allo spirito della nonna"],
+  FN: ["il fantasma del castello e la contessa che lo trattava da maggiordomo", "l'indovino di corte e il re che non voleva sapere niente", "un oracolo e il nobile che chiedeva solo previsioni del tempo"],
+  FC: ["un fantasma e l'inquilino che non si spaventava mai", "la cartomante e il barbiere che si contendevano i pettegolezzi del paese", "un medium e il postino che consegnava lettere dall'aldilà"],
+  FX: ["l'oracolo e il filosofo greco che contestava ogni profezia", "un fantasma e il pirata che lo voleva come mozzo", "il medium e il piccione che portava messaggi tra i due mondi"],
+  KK: ["due fornai rivali sulla stessa strada", "il cuoco e il cameriere che si mangiava metà dei piatti", "due osti che litigavano su chi faceva la frittata migliore"],
+  KN: ["il cuoco di corte e il conte che rimandava indietro ogni piatto", "l'oste e il nobile decaduto che non pagava mai il conto", "la principessa e il fornaio che le portava la porchetta di nascosto"],
+  KC: ["l'oste e il cliente fisso che non pagava mai", "il cuoco e il postino che passava sempre all'ora di pranzo", "il fornaio e il vicino che entrava solo per le briciole"],
+  KX: ["il cuoco e il pirata che gli rubava sempre le provviste", "l'oste e il filosofo greco che pagava con le sue massime", "il cuoco che preparò il pranzo per i soldati nel cavallo di legno"],
+  NN: ["il re e la regina che litigavano su chi comandava", "due contesse in gara per il cappello più assurdo", "due nobili decaduti che si offrivano il caffè a turno"],
+  NC: ["il conte e il maggiordomo che sapeva tutto di tutti", "l'esattore e l'unico contribuente onesto del regno", "la contessa e la sarta che conosceva tutti i suoi segreti"],
+  NX: ["il re e il cavallo di legno che gli avevano regalato (pessima idea)", "l'ambasciatore e il pirata con cui firmò un trattato improbabile", "la principessa e il piccione che portava le sue lettere d'amore"],
+  CC: ["vicini di casa che litigavano per le scale del condominio", "il barbiere e il cliente che non voleva mai tagliare", "due viaggiatori che perdevano sempre lo stesso treno"],
+  CX: ["il vigile e il pirata che parcheggiava la nave in doppia fila", "il postino e il piccione viaggiatore che gli rubava il lavoro", "l'esploratore e il mercante che gli vendeva mappe sbagliate"],
+  XX: ["due soldati greci che volevano uscire per primi dal cavallo", "il filosofo e il piccione che ascoltava tutte le sue lezioni", "due pirati che si contendevano la stessa mappa sbagliata"]
+};
+window.ANIME_GEMELLE = "la stessa persona! Gli spiriti dicono che siete anime gemelle: a teatro sedetevi vicini";
+
+// Legame tra due risultati (numeri da 1 a 100): sempre lo stesso per la stessa coppia, in qualunque ordine
+window.calcolaLegame = (a, b) => {
+  if (a === b) return window.ANIME_GEMELLE;
+  const fa = window.FAMIGLIE[a - 1], fb = window.FAMIGLIE[b - 1];
+  const chiave = ORDINE_FAMIGLIE.indexOf(fa) <= ORDINE_FAMIGLIE.indexOf(fb) ? fa + fb : fb + fa;
+  const lista = window.LEGAMI[chiave];
+  // Preferisce la variante che nomina gli stessi personaggi (attore, fantasma, cavallo…)
+  const radici = t => new Set(t.toLowerCase().replace(/[^a-zàèéìòù ]/g, " ").split(" ")
+    .filter(w => w.length >= 4 && !PAROLE_VUOTE.has(w)).map(w => w.slice(0, 5)));
+  const nostre = new Set([...radici(window.RISULTATI[a - 1]), ...radici(window.RISULTATI[b - 1])]);
+  const punti = lista.map(l => [...radici(l)].filter(r => nostre.has(r)).length);
+  const max = Math.max(...punti);
+  const migliori = lista.filter((_, i) => punti[i] === max);
+  return migliori[(Math.min(a, b) * 31 + Math.max(a, b) * 17) % migliori.length];
+};
+const PAROLE_VUOTE = new Set(["sempre", "solo", "della", "dello", "delle", "degli", "nella", "nello", "anche", "tutti", "tutto", "tutte",
+  "quando", "prima", "dopo", "come", "aveva", "erano", "faceva", "sapeva", "stesso", "stessa", "molto", "ogni", "suoi", "sue", "suo", "loro"]);
