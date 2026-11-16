@@ -84,15 +84,6 @@
   .bottone.secondario:active { transform: scale(.96); }
   .link { background: none; border: none; color: #bbb; font-family: var(--macchina); font-size: .9rem; text-decoration: underline; cursor: pointer; padding: 8px; }
   .nascosto { opacity: 0 !important; pointer-events: none !important; }
-  .magia { position: absolute; z-index: 7; left: 50%; top: calc(var(--d) * .98); transform: translateX(-50%); white-space: nowrap;
-    display: flex; align-items: center; gap: 8px; padding: 7px 14px 7px 8px; border-radius: 999px;
-    border: 1px solid rgba(244,233,208,.4); background: rgba(10,6,4,.6); color: var(--crema);
-    font-family: var(--macchina); font-size: .85rem; cursor: pointer; transition: opacity .6s ease, top .9s ease;
-    -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
-  .magia .interr { position: relative; width: 34px; height: 18px; border-radius: 9px; background: #5a5048; transition: background .3s; }
-  .magia .interr::after { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: var(--crema); transition: transform .3s; }
-  .magia.on .interr { background: var(--giallo); }
-  .magia.on .interr::after { transform: translateX(16px); }
   #diag { position: fixed; z-index: 20; left: 6px; right: 6px; bottom: 4px; font: 11px/1.3 monospace; color: #ff8a80; text-align: center; pointer-events: none; }
   .audio { position: fixed; z-index: 10; top: max(10px, env(safe-area-inset-top)); right: 12px;
     width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(244,233,208,.35);
@@ -114,15 +105,13 @@
   .sfera.gl { background: transparent; }
   .sfera.gl #vetro3d { display: block; }
   .sfera.gl #nebbia { opacity: 0; }
-  .sfera.gl video { opacity: 0; }
   .sfera.gl .vetro, .sfera.gl .vuota { display: none !important; }
-  .sfera video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); }
   .sfera .vuota {
     position: absolute; inset: 0; display: none; align-items: center; justify-content: center; padding: 18%;
     background: radial-gradient(circle at 50% 45%, #3b2552, #0d0716 70%);
     font-family: var(--titolo); font-size: calc(var(--d) * .4); color: rgba(230,220,255,.35);
   }
-  .sfera.senza-camera .vuota { display: flex; }
+  .sfera.chiusa .vuota { display: flex; }
   #nebbia { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; transition: opacity 1.4s ease; }
   #nebbia.svanita { opacity: 0; pointer-events: none; }
   .vetro {
@@ -147,39 +136,14 @@
   .base .anello { top: 18%; width: 60%; height: 24%; border-radius: 50%;
     background: radial-gradient(ellipse at 50% 35%, #fff3c4, #c9a24a 45%, #5a3a14 85%);
     box-shadow: inset 0 -3px 6px rgba(0,0,0,.5); }
-  .conto { position: absolute; inset: 0; z-index: 4; display: flex; align-items: center; justify-content: center; font-family: var(--titolo); font-size: 6rem; color: #fff; text-shadow: 0 0 24px var(--rosa); pointer-events: none; }
-  .flash { position: absolute; inset: 0; z-index: 5; background: #fff; opacity: 0; pointer-events: none; border-radius: 50%; }
-  .flash.via { animation: flash .6s ease-out; }
   .scintille { position: absolute; left: 50%; top: calc(var(--d) / 2); width: 0; height: 0; z-index: 6; pointer-events: none; }
   .scintilla { position: absolute; width: 9px; height: 9px; border-radius: 50%; animation: esplodi 1.7s ease-out forwards; }
 
   .risposta { min-height: 9.5em; display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; }
   .suggerimento { font-size: 1.05rem; animation: respira 2.2s ease-in-out infinite; }
-
-  /* Lettere ritagliate stile Copia Incolla */
-  .collage { display: flex; gap: 6px; align-items: center; justify-content: center; min-height: 82px; }
-  .lettera {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: var(--lw); height: calc(var(--lw) * 1.3); line-height: 1;
-    box-shadow: 2px 3px 0 rgba(0,0,0,.45);
-    opacity: 0; animation: cadi .55s cubic-bezier(.3,1.6,.5,1) forwards;
-  }
-  .spazio { width: calc(var(--lw) * .35); }
-  .sottotitolo { font-size: .9rem; letter-spacing: .12em; opacity: 0; animation: appari 1s forwards; }
   .profezia { max-width: 22em; margin-top: 6px; padding: 10px 16px 12px; background: #f1e4c8; color: #2a1c10;
     transform: rotate(-1.5deg); box-shadow: 4px 6px 0 rgba(0,0,0,.45); font-size: .95rem; line-height: 1.45; text-align: center; }
   .profezia small { display: block; color: #c22f26; letter-spacing: .2em; font-size: .7rem; margin-bottom: 4px; }
-  .motto { font-size: .95rem; font-style: italic; opacity: 0; animation: appari 1s .4s forwards; }
-  .piccolo-sugg { font-size: .82rem; opacity: .6; }
-
-  /* --- Foto --- */
-  #anteprima { height: min(60dvh, 560px); max-width: 86vw; border-radius: 10px; box-shadow: 0 8px 30px rgba(0,0,0,.7); -webkit-touch-callout: default; user-select: auto; }
-  .riga { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
-
-  /* --- Errore --- */
-  .errore { max-width: 24em; line-height: 1.55; font-size: .98rem; }
-  .errore h2 { font-family: var(--titolo); font-weight: normal; color: var(--giallo); letter-spacing: .03em; margin: 0 0 8px; }
-  .errore ol { text-align: left; padding-left: 1.3em; }
 
   @keyframes deriva1 { to { transform: translate(18vw, -12vh) scale(1.15); } }
   @keyframes deriva2 { to { transform: translate(-20vw, -18vh) scale(1.2); } }
@@ -232,7 +196,7 @@
 <section id="scena" class="schermata">
   <h2 class="titolo mini">COME FECERO I GRECI</h2>
   <div class="postazione">
-    <div id="sfera" class="sfera senza-camera">
+    <div id="sfera" class="sfera chiusa">
       <div class="vuota">?</div>
       <canvas id="vetro3d"></canvas>
       <canvas id="nebbia"></canvas>
@@ -268,8 +232,6 @@
   }
   const $ = id => document.getElementById(id);
   const attesa = ms => new Promise(ok => setTimeout(ok, ms));
-  const video = document.createElement("video");          // nessuna fotocamera in questa pagina
-  const senzaCamera = true;
   const logo = new Image(); logo.src = "assets/logo-copia-incolla.jpg";
   const fontPronti = Promise.all([
     document.fonts.load('40px "Luckiest Guy"'), document.fonts.load('40px "Special Elite"')
@@ -476,8 +438,6 @@
         [196, 246.9, 293.7, 392].forEach((f, k) => nota(f, .35 + k * .04, .35, 2.2, .07, "triangle", true));
       }),
       carta: sicuro(() => { soffio(0, .06, .4, 900, "bandpass", 1.2); nota(150, 0, .002, .08, .16, "sine"); }),
-      bip: sicuro(() => nota(520, 0, .005, .12, .14, "triangle")),
-      scatto: sicuro(() => { soffio(0, .035, .6, 2500, "highpass"); soffio(.07, .05, .45, 1800, "highpass"); }),
       magia: sicuro(() => { soffio(0, .6, .12, 500, "bandpass", 2, 2000, .2); nota(220, 0, .2, .7, .06, "sine", true, 330); })
     };
   })();
@@ -496,13 +456,13 @@
     void main() { vUv = vec2(pos.x * .5 + .5, .5 - pos.y * .5); gl_Position = vec4(pos, 0., 1.); }`;
   const SHADER_F = `precision mediump float;
     varying vec2 vUv;
-    uniform sampler2D uVid, uFog;
+    uniform sampler2D uInterno, uFog;
     uniform vec2 uScala;
-    uniform float uFogA, uT, uPix, uSpec, uDef, uOnda;
-    vec3 vid(vec2 q) {
-      vec2 t = q * .5 + .5; if (uSpec > .5) t.x = 1. - t.x;   // specchio dal vivo, foto dritta
-      t = (t - .5) * uScala + .5;                       // ritaglio quadrato centrato
-      return texture2D(uVid, clamp(t, 0., 1.)).rgb;
+    uniform float uFogA, uT, uPix, uDef, uOnda;
+    vec3 interno(vec2 q) {
+      vec2 t = q * .5 + .5;
+      t = (t - .5) * uScala + .5;                       
+      return texture2D(uInterno, clamp(t, 0., 1.)).rgb;
     }
     void main() {
       vec2 p = vUv * 2. - 1.;
@@ -510,11 +470,11 @@
       if (r > 1.) { gl_FragColor = vec4(0.); return; }
       float z = sqrt(max(1. - r2, 0.));
       vec3 n = vec3(p.x, -p.y, z);
-      // faccia senza deformazioni: solo un leggero velo colorato verso il bordo
+      
       float k = mix(1., .6 + .45 * r2, uDef);                               // effetto sfera (0 = naturale)
       vec2 q = p * k + p * sin(r * 14. - uT * 9.) * .04 * uOnda;              // onda quando si cambia
       float ab = .012 * uDef;
-      vec3 col = vec3(vid(q * (1. + ab)).r, vid(q).g, vid(q * (1. - ab)).b);
+      vec3 col = vec3(interno(q * (1. + ab)).r, interno(q).g, interno(q * (1. - ab)).b);
       col = mix(col, vec3(.28, .16, .42), smoothstep(.7, 1., r) * .45);  // spessore del vetro
       vec4 f = texture2D(uFog, vUv);
       col = mix(col, f.rgb, f.a * uFogA);                                   // nebbia da strofinare
@@ -562,11 +522,11 @@
         [gl.TEXTURE_WRAP_S, gl.TEXTURE_WRAP_T].forEach(w => gl.texParameteri(gl.TEXTURE_2D, w, gl.CLAMP_TO_EDGE));
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
         gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([13, 7, 22, 255])); return t; };
-      const tVid = tex(0), tFog = tex(1);
-      gl.uniform1i(u("uVid"), 0); gl.uniform1i(u("uFog"), 1);
+      const tInterno = tex(0), tFog = tex(1);
+      gl.uniform1i(u("uInterno"), 0); gl.uniform1i(u("uFog"), 1);
       gl.uniform1f(u("uPix"), 2 / lato);
 
-      // Immagine di riserva quando non c'è la fotocamera
+      // Interno della sfera: nebbia viola con il punto interrogativo
       const vuota = document.createElement("canvas"); vuota.width = vuota.height = 256;
       const vc = vuota.getContext("2d");
       const vg = vc.createRadialGradient(128, 115, 0, 128, 128, 180); vg.addColorStop(0, "#4a2f6a"); vg.addColorStop(1, "#0d0716");
@@ -575,13 +535,10 @@
       vc.fillText("?", 128, 136);
       let vuotaCaricata = false;
 
-      const disegna = (t, specchio = false) => {
-        gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, tVid);
+      const disegna = t => {
+        gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, tInterno);
         let w = 1, h = 1;
-        if (!senzaCamera && video.readyState >= 2 && video.videoWidth) {
-          gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, video);
-          w = video.videoWidth; h = video.videoHeight;
-        } else if (senzaCamera && !vuotaCaricata) {
+        if (!vuotaCaricata) {
           gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, vuota); vuotaCaricata = true;
         }
         gl.uniform2f(u("uScala"), w > h ? h / w : 1, h > w ? w / h : 1);
@@ -592,7 +549,6 @@
         }
         gl.uniform1f(u("uFogA"), svanitaDa ? Math.max(0, 1 - (t - svanitaDa) / 1400) : 1);
         gl.uniform1f(u("uT"), t / 1000);
-        gl.uniform1f(u("uSpec"), specchio ? 1 : 0);
         defVal += (defMeta - defVal) * .08;
         gl.uniform1f(u("uDef"), defVal);
         gl.uniform1f(u("uOnda"), ondaDa ? Math.max(0, 1 - (t - ondaDa) / 1100) : 0);

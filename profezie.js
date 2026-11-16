@@ -1,6 +1,6 @@
-// Le profezie del medium: ne esce una a caso in ogni foto.
+// Le profezie del medium: ne esce una a caso ogni volta.
 // Per aggiungerne una: una riga tra virgolette, con la virgola alla fine.
-// Meglio restare sotto i 110 caratteri, così stanno nel biglietto della foto.
+// Meglio restare sotto i 110 caratteri, così stanno nel riquadro della profezia.
 window.PROFEZIE = [
   "Gli spiriti vedono una risata nel tuo futuro. Molto vicino. Tipo tra dieci minuti.",
   "Stasera qualcuno vicino a te scarterà una caramella nel momento più silenzioso. Perdonalo.",
