@@ -27,10 +27,10 @@ head = '''<!DOCTYPE html>
 <title>Il medium ha una profezia per te 🔮</title>
 <meta name="description" content="Come fecero i Greci, una commedia di Copia Incolla. Strofina la sfera e scopri la tua profezia.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://giangit85.github.io/come-fecero-i-greci/">
+<meta property="og:url" content="https://giangit85.github.io/Come-fecero-i-greci/">
 <meta property="og:title" content="Il medium ha una profezia per te 🔮">
 <meta property="og:description" content="Come fecero i Greci, una commedia di Copia Incolla. Strofina la sfera e scopri la tua profezia.">
-<meta property="og:image" content="https://giangit85.github.io/come-fecero-i-greci/assets/anteprima.jpg">
+<meta property="og:image" content="https://giangit85.github.io/Come-fecero-i-greci/assets/anteprima.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="it_IT">
@@ -98,7 +98,7 @@ body = '''</head>
     quando: "20 NOVEMBRE 2026 · ORE 21:00",
     dove: "TEATRO SANT'ANNA · TORINO",
     prenota: "https://forms.gle/PsdN4vKsmonuJ4nEA",
-    sito: "https://giangit85.github.io/come-fecero-i-greci/"
+    sito: "https://giangit85.github.io/Come-fecero-i-greci/"
   };
   // =================================================================================
   const TITOLO = "COME FECERO I GRECI";
